@@ -12,6 +12,15 @@ export default function App() {
   const [logueado, setLogueado] = useState(false);
   const [vista, setVista] = useState("cartera"); // "cartera" | "polizas"
 
+  const [installPrompt, setInstallPrompt] = useState(null);
+
+useEffect(() => {
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    setInstallPrompt(e);
+  });
+}, []);
+
   // Gate para entrar a Pólizas
   const [polizasAutorizadas, setPolizasAutorizadas] = useState(false);
 
@@ -134,8 +143,31 @@ export default function App() {
               
             >
               Salir
+
+
+              
               
             </button>
+
+
+            {installPrompt && (
+  <button
+    onClick={() => installPrompt.prompt()}
+    style={{
+      position: "fixed",
+      bottom: "20px",
+      right: "20px",
+      background: "#2563eb",
+      color: "white",
+      padding: "10px 15px",
+      borderRadius: "8px",
+      border: "none",
+      zIndex: 9999
+    }}
+  >
+    📲 Instalar App
+  </button>
+)}
           </div>
         </div>
       </div>
