@@ -1,3 +1,11 @@
+const link = document.createElement("link")
+link.rel = "manifest"
+link.href = "/manifest.json"
+document.head.appendChild(link)
+
+
+
+
 // src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
